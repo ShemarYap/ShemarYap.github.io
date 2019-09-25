@@ -19,11 +19,13 @@ period = np.array(degree_range)* np.pi/180
 
 x1 = np.cos(period)
 x2 = np.sin(period)
+x3 = np.tan(period)
 
-sincos = plt.pyplot.figure()
-SCgraph = sincos.add_subplot(222)
+sincostan = plt.pyplot.figure()
+SCgraph = sincostan.add_subplot(222)
 
 
 SCgraph.scatter(period,x1, label = 'Cosine')
 SCgraph.scatter(period,x2, label = 'Sine')
+SCgraph.scatter(period,x3, label = 'Tangent')
 plt.pyplot.legend(loc = 'lower left', bbox_to_anchor =(1,0))
