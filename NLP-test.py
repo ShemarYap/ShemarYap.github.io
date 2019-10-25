@@ -1,4 +1,3 @@
-
 # -*- coding: utf-8 -*-
 """
 Created on Sun Sep 22 13:13:23 2019
@@ -104,4 +103,40 @@ for i in range(0,len(m_cf)):
     temp_ftxt = TextBlob(str(f_cf.iloc[i,]))
     f_score = temp_ftxt.sentiment.polarity
     sentrank_f.append(f_score)   
+    
+## attach the new column to dataframe
+
+m_df['Sentiment'] = sentrank_m
+m_df.sort_values( by=['Sentiment'], ascending = False, inplace = True)
+
+polarity = []
+
+for k in m_df['Sentiment']:
+    
+    if k >= 0.001:
+        polarity.append("Positive") 
+    elif k == 0.0:
+        polarity.append("Neutral")  
+    else:
+        polarity.append("Negative") 
+        
+m_df["polarity"] = polarity
+
+f_df['Sentiment'] = sentrank_f
+f_df.sort_values( by=['Sentiment'], ascending = False, inplace = True)
+
+polarity2 = []
+
+for m in f_df['Sentiment']:
+    
+    if m >= 0.001:
+        polarity2.append("Positive") 
+    elif m == 0.0:
+        polarity2.append("Neutral")  
+    else:
+        polarity2.append("Negative") 
+        
+f_df["polarity"] = polarity2
+
+        
     
