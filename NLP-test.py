@@ -98,7 +98,7 @@ for i in range(0,len(m_cf)):
     
 # for females
     
- for i in range(0,len(f_cf)):
+for i in range(0,len(f_cf)):
     
     temp_ftxt = TextBlob(str(f_cf.iloc[i,]))
     f_score = temp_ftxt.sentiment.polarity
@@ -139,4 +139,16 @@ for m in f_df['Sentiment']:
 f_df["polarity"] = polarity2
 
         
+### combine the dataframes to choose top 10s
+main_df = pd.DataFrame()
+   
+main_df = pd.concat([main_df,m_df,f_df], ignore_index = True)
+main_df.sort_values( by = ['Sentiment'], ascending = False, inplace = True)
+
+## Positive top 10
+P_top = main_df.iloc[0:10,]
+## Negative top 10
+N_top = main_df.iloc[::-1,].iloc[0:10]
+## Neautral top 10
+Z_top = main_df.iloc[42:52]
     
